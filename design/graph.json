@@ -1,0 +1,48 @@
+{
+  "nodes": [
+    {
+      "id": "craft",
+      "status": "resolved",
+      "detail": "1.50 kg wet, 1.10 kg dry, 0.40 kg propellant, 70 mm diameter, Cd 0.50, Isp 205 s."
+    },
+    {
+      "id": "tube_path",
+      "status": "resolved",
+      "detail": "Reference from the 11200-case map: 8° breech, 1.5 m radius clothoid-arc turn at 3 g, then a 65° straight barrel at 14 g. Length 47.3 m. Exit 110 m/s at 42.3 m altitude. Verified by tests/test_path.py, tests/test_tube.py, and data/geometry_map.csv."
+    },
+    {
+      "id": "coil_force",
+      "status": "open",
+      "detail": "Required axial force peaks at 220 N. Electrical size at 20% coil efficiency is 119 kW peak and 48.7 kJ. Coil geometry, timing, and suck-back are not solved. The force profile is data/reference_tube_profile.csv."
+    },
+    {
+      "id": "ball_liner",
+      "status": "resolved",
+      "detail": "Tube-side Si3N4 ball transfers. Peak ball load 16.9 N on the breech turn, spring rate 21.1 kN/m. The straight barrel unloads the balls. Verified by tests/test_bearings.py."
+    },
+    {
+      "id": "rub_strip",
+      "status": "resolved",
+      "detail": "25 mm pads. Chordal rise in the 1.5 m turn is 0.052 mm. Hertz peak is 1.53 GPa on a hard nonmagnetic race, 0.93 GPa on aluminum, 0.15 GPa on PEEK."
+    },
+    {
+      "id": "ascent_motor",
+      "status": "resolved",
+      "detail": "T/W 3.5 motor lights 0.45 m after the muzzle. Same 0.40 kg load: tube apogee 2389 m, pad with a 2 m rail 584 m, pad at T/W 14 apogee 1826 m. Propellant to a 1 km apogee: 0.093 kg, 3.13 kg, and 0.182 kg."
+    }
+  ],
+  "edges": [
+    {"from": "tube_path", "to": "craft", "rel": "pushes"},
+    {"from": "coil_force", "to": "tube_path", "rel": "must_produce_axial_force_for"},
+    {"from": "ball_liner", "to": "tube_path", "rel": "reacts_normal_load_of"},
+    {"from": "rub_strip", "to": "ball_liner", "rel": "takes_contact_from"},
+    {"from": "ascent_motor", "to": "tube_path", "rel": "ignites_from_muzzle_of"},
+    {"from": "coil_force", "to": "ball_liner", "rel": "adds_residual_radial_load_on"}
+  ],
+  "open_issues": [
+    "Coil cross-section, trigger timing, and suck-back are not modeled. The force profile is the requirement.",
+    "Pulsed-power bus and capacitor mass are not modeled.",
+    "The motor lights after the sleeve clears the bore, so the plume starts outside the tube. Ignition transient is not modeled.",
+    "A hard nonmagnetic rub-strip alloy is not chosen. Aluminum at 0.93 GPa is at the edge of brinelling."
+  ]
+}
