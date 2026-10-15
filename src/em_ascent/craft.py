@@ -20,7 +20,6 @@ TW_PAD = 14.0
 # Breech loader angle. The turn pitches up from here.
 GAMMA0_DEG = 8.0
 
-# Ignite after the sleeve has cleared the muzzle.
-MUZZLE_CLEARANCE_M = 0.45
+# Older fixed offset. The light plan in ignition.py is the muzzle clearance to use.
 
 LINER = BallLiner()

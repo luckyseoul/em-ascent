@@ -109,12 +109,13 @@ def write_figures(shot, flights: list[dict]) -> None:
 
     # Trajectories are redrawn here so the ascent figure matches the table.
     from em_ascent.ascent import Vehicle, simulate_ascent
-    from em_ascent.craft import CD, DIAMETER_M, DRY_KG, ISP_S, MUZZLE_CLEARANCE_M, PROP_KG, TW_GENTLE, TW_PAD
+    from em_ascent.craft import CD, DIAMETER_M, DRY_KG, ISP_S, PROP_KG, TW_GENTLE, TW_PAD
+    from em_ascent.ignition import plan_light
 
     gamma = float(shot.gamma[-1])
     v = float(shot.v[-1])
     specs = [
-        ("tube, gentle motor", TW_GENTLE, float(shot.x[-1]), float(shot.h[-1]), v * math.cos(gamma), v * math.sin(gamma), MUZZLE_CLEARANCE_M, 0.0),
+        ("tube, gentle motor", TW_GENTLE, float(shot.x[-1]), float(shot.h[-1]), v * math.cos(gamma), v * math.sin(gamma), plan_light(v).nominal_clearance_m, 0.0),
         ("pad, same motor", TW_GENTLE, 0.0, 0.3, 0.4 * math.cos(gamma), 0.4 * math.sin(gamma), 0.0, 2.0),
         ("pad, high thrust", TW_PAD, 0.0, 0.3, 0.4 * math.cos(gamma), 0.4 * math.sin(gamma), 0.0, 2.0),
     ]

@@ -11,11 +11,11 @@ from em_ascent.craft import (
     DIAMETER_M,
     DRY_KG,
     ISP_S,
-    MUZZLE_CLEARANCE_M,
     PROP_KG,
     TW_GENTLE,
     TW_PAD,
 )
+from em_ascent.ignition import plan_light
 from em_ascent.tube import TubeShot
 
 
@@ -34,6 +34,7 @@ def _vehicle(tw: float, prop: float = PROP_KG) -> Vehicle:
 def compare_flights(shot: TubeShot, target_apogee_m: float = 1000.0) -> list[dict]:
     gamma = float(shot.gamma[-1])
     v = float(shot.v[-1])
+    clearance = plan_light(v).nominal_clearance_m
     rows = []
     missions = (
         (
@@ -43,7 +44,7 @@ def compare_flights(shot: TubeShot, target_apogee_m: float = 1000.0) -> list[dic
             float(shot.h[-1]),
             v * math.cos(gamma),
             v * math.sin(gamma),
-            MUZZLE_CLEARANCE_M,
+            clearance,
             0.0,
             TW_GENTLE,
         ),

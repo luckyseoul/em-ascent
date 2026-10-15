@@ -3,12 +3,12 @@
     "mission": "tube, gentle motor",
     "thrust_n": 51.4849125,
     "tw_ignition": 3.5,
-    "peak_motor_g": 4.77275713227184,
-    "apogee_m": 2388.5876193500894,
-    "t_gate_s": 0.3771915304141762,
-    "peak_q_kpa": 22.08396620351773,
-    "burnout_speed": 210.04219473637292,
-    "propellant_for_1km_kg": 0.09293731689453125
+    "peak_motor_g": 4.772822585917143,
+    "apogee_m": 2379.601504201172,
+    "t_gate_s": 0.3838732163041214,
+    "peak_q_kpa": 22.107731200271402,
+    "burnout_speed": 210.10199932923865,
+    "propellant_for_1km_kg": 0.09318084716796873
   },
   {
     "mission": "pad, same gentle motor",

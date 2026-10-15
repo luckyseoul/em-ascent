@@ -28,7 +28,7 @@
     {
       "id": "ascent_motor",
       "status": "resolved",
-      "detail": "T/W 3.5 motor lights 0.45 m after the muzzle. Same 0.40 kg load: tube apogee 2389 m, pad with a 2 m rail 584 m, pad at T/W 14 apogee 1826 m. Propellant to a 1 km apogee: 0.093 kg, 3.13 kg, and 0.182 kg."
+      "detail": "Proof burn at the breech is the abort. Position interlock lights the motor on the open rail, nominally 5.8 m past the closed bore. Engine-out landing is a 0.9 m chute at 5.1 m/s. A fully magnetic 1 km apogee at 14 g needs 215 m/s and a 169 m bore."
     }
   ],
   "edges": [
@@ -42,7 +42,8 @@
   "open_issues": [
     "Coil cross-section, trigger timing, and suck-back are not modeled. The force profile is the requirement.",
     "Pulsed-power bus and capacitor mass are not modeled.",
-    "The motor lights after the sleeve clears the bore, so the plume starts outside the tube. Ignition transient is not modeled.",
+    "Ignition delay is an assumed 20/50/100 ms family, not a measured valve. The position interlock is the protection if the fast tail is quicker than 20 ms.",
+    "The muzzle deflector is sized from a 20 degree plume cone. It is not a heat-transfer design.",
     "A hard nonmagnetic rub-strip alloy is not chosen. Aluminum at 0.93 GPa is at the edge of brinelling."
   ]
 }
