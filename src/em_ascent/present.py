@@ -237,6 +237,59 @@ def figure_recovery(choice: dict) -> None:
     plt.close(fig)
 
 
+def figure_lunar() -> None:
+    from em_ascent.lunar import (
+        electrical_j_per_kg,
+        hop_range,
+        supplies_kg,
+        thrown_for_bank_j,
+        tube_length,
+    )
+
+    banks_mj = np.array([0.05, 0.2, 0.5, 1.0, 2.0, 5.0])
+    fig, axes = plt.subplots(1, 2, figsize=(10.2, 4.4))
+    for catch, color, label in (
+        (False, BLUE, "Self-braking, 130 m/s burn"),
+        (True, GREEN, "Base catch, no thruster"),
+    ):
+        thrown = [thrown_for_bank_j(b * 1e6, 110.0, 14.0, 45.0) for b in banks_mj]
+        cargo = [supplies_kg(m, catch=catch) for m in thrown]
+        axes[0].plot(banks_mj, cargo, "o-", color=color, label=label)
+    axes[0].set_xlabel("Capacitor bank (MJ)")
+    axes[0].set_ylabel("Supplies delivered (kg)")
+    axes[0].set_title("110 m/s hop, 14 g bore, 45°")
+    axes[0].grid(True, alpha=0.3)
+    axes[0].legend(frameon=False, fontsize=8)
+
+    speeds = np.linspace(60, 300, 50)
+    lengths = [tube_length(float(v), 14.0) for v in speeds]
+    ranges = [hop_range(float(v), 45.0) / 1000.0 for v in speeds]
+    ax2 = axes[1]
+    ax2.plot(lengths, ranges, color=BLUE, lw=2.0)
+    offsets = {90: (8, -14), 110: (8, 8), 180: (8, 6), 285: (-52, 8)}
+    for v_mark in (90, 110, 180, 285):
+        length = tube_length(v_mark, 14.0)
+        reach = hop_range(v_mark, 45.0) / 1000.0
+        ax2.scatter([length], [reach], color=RUST, zorder=4)
+        dx, dy = offsets[v_mark]
+        ax2.annotate(
+            f"{v_mark:.0f} m/s",
+            xy=(length, reach),
+            xytext=(dx, dy),
+            textcoords="offset points",
+            fontsize=8,
+            color=INK,
+        )
+    ax2.set_xlabel("Straight bore length at 14 g (m)")
+    ax2.set_ylabel("Hop range on a flat Moon (km)")
+    ax2.set_title("45° throw, no air")
+    ax2.grid(True, alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(FIG / "lunar_payload.png", dpi=150)
+    plt.close(fig)
+    _ = electrical_j_per_kg
+
+
 def main() -> None:
     FIG.mkdir(parents=True, exist_ok=True)
     choice, rows = _shot_arrays()
@@ -245,6 +298,7 @@ def main() -> None:
     figure_compare()
     figure_paths(choice)
     figure_recovery(choice)
+    figure_lunar()
     print("wrote", FIG)
 
 

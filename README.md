@@ -1,12 +1,40 @@
 # em-ascent
 
-A depot tube for a small package on short notice. The craft is 1.50 kg wet and 70 mm across, already sitting on the breech clamp. The bank for one shot is about 49 kJ. From the commit, the proof burn is 0.4 s and the bore run is 1.1 s.
+Emergency supplies for a Moon base. The tube sits on the lunar surface and throws a package to the habitat. There is no air and no chute. Exit speed is set by the bore, not by how much the package weighs. Coil energy and the landing burn scale with mass.
 
-Three jobs, same tube:
+The reference bore is the 14 g, 110 m/s case already sized below. On a flat Moon at 45° that is a 44 m tube, a 7.5 km hop, and an apex of 1.9 km. The bank is 30.5 kJ per kilogram of thrown mass at 20% coil efficiency, and the muzzle pulse is 76 kW per kilogram.
 
-1. **Beacon.** Radio relay, marker, or camera lofted on a 51 N motor. With 0.40 kg of propellant the apogee is 2.38 km. A 1 km apogee needs 0.093 kg.
-2. **Quick look.** Motor stays cold. The package coasts to about 400 m. Useful when the proof burn fails the flight light and a local sensor pass is still worth taking.
-3. **Bring it back.** If the motor stays cold, a 0.9 m chute opens at apogee. Impact is about 5 m/s, inside a box roughly 310 to 350 m downrange and 26 m to either side.
+![Supplies versus bank energy, and hop range versus bore length](docs/figures/lunar_payload.png)
+
+| Bank | Thrown | Supplies, self-braking | Supplies, base catch | Peak power |
+| --- | ---: | ---: | ---: | ---: |
+| 0.10 MJ | 3.3 kg | 2.7 kg | 3.0 kg | 0.25 MW |
+| 0.50 MJ | 16 kg | 14 kg | 15 kg | 1.2 MW |
+| 1.0 MJ | 33 kg | 28 kg | 30 kg | 2.5 MW |
+| 5.0 MJ | 164 kg | 138 kg | 151 kg | 12 MW |
+
+Self-braking spends a 130 m/s burn at 220 s specific impulse, about 6% of the thrown mass, and keeps 10% for the shell and thruster (at least 0.40 kg). A base net or berm deletes the thruster and the burn, so more of the throw is supplies. Above a few kilograms the delivered fraction is about 84% with a burn and about 92% with a catch.
+
+A 0.5 MJ depot bank is the practical short-notice load: about 14 kg of supplies, 7.5 km downrange. That is on the order of a few days of water for one person, or a mix of water, a battery, and a repair kit. An 8 kg water load is a 9.5 kg throw, roughly 0.3 MJ and a 0.7 MW pulse.
+
+Farther bases need a faster exit, still at 14 g:
+
+| To the base | Exit speed | Bore length | Bank per kg thrown |
+| --- | ---: | ---: | ---: |
+| 5 km | 90 m/s | 29 m | 20 kJ |
+| 7.5 km | 110 m/s | 44 m | 30 kJ |
+| 20 km | 180 m/s | 118 m | 82 kJ |
+| 50 km | 285 m/s | 295 m | 204 kJ |
+
+The package arrives at the same speed it left. At 110 m/s that is a hard impact unless the base catches it or the package fires the landing burn. Vials and electronics that cannot take 14 g want a longer, gentler bore: the same 110 m/s at 5 g is a 123 m tube, and the energy per kilogram barely changes because most of it is kinetic energy.
+
+The ball liner has to grow with the package. Contact force scales with mass. The 1.5 kg Earth reference used nine loaded balls. A 16 kg throw wants about ten times that many, or a harder race. The coils want the same treatment. Force and current scale with mass. The bore length does not.
+
+This tube on Earth does not send cargo to the Moon. The sections below are the Earth bore the 14 g, 110 m/s choice was checked against, including air, a chute, and a small ascent motor.
+
+## Earth bore check
+
+A 1.50 kg craft, 70 mm across, on a charged bank. The proof burn is 0.4 s and the bore run is 1.1 s. With air, the same 51 N motor reaches 2.38 km. A cold motor coasts to about 400 m and a 0.9 m chute lands it at about 5 m/s.
 
 ![Three departures from the same tube](docs/figures/use_paths.png)
 
@@ -14,7 +42,7 @@ Three jobs, same tube:
 
 ![Depot tube, to scale](docs/figures/layout.png)
 
-The last abort is the end of the proof burn. After that the bore is cold, the motor lights on the open rail, and a dead motor selects the chute. It does not stop a craft that is already at 110 m/s.
+The last abort is the end of the proof burn. After that the bore is cold and the motor lights on the open rail.
 
 ![What the tube changes for a 1 km package](docs/figures/compare.png)
 
