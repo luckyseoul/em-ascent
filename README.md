@@ -1,36 +1,21 @@
 # em-ascent
 
-Emergency supplies for a Moon base. The tube sits on the lunar surface and throws a package to the habitat. There is no air and no chute. Exit speed is set by the bore, not by how much the package weighs. Coil energy and the landing burn scale with mass.
+The tube is a launch assist. It shoves a small supply rocket onto a climbing path so the motor can light already moving, at lower thrust. The rocket does the rest of the ascent.
 
-The reference bore is the 14 g, 110 m/s case already sized below. On a flat Moon at 45° that is a 44 m tube, a 7.5 km hop, and an apex of 1.9 km. The bank is 30.5 kJ per kilogram of thrown mass at 20% coil efficiency, and the muzzle pulse is 76 kW per kilogram.
+The worked case is 10 kg of supplies and 6 kg of shell, motor, and sleeve. Diameter 20 cm, drag coefficient 0.35, specific impulse 260 s. The target is a 100 km apogee, above the atmosphere. The bore is 14 g. The motor lights on the open rail and flies a gravity turn.
 
-![Supplies versus bank energy, and hop range versus bore length](docs/figures/lunar_payload.png)
+![Propellant and thrust to 100 km](docs/figures/assist_100km.png)
 
-| Bank | Thrown | Supplies, self-braking | Supplies, base catch | Peak power |
+| Launch | Bore | Motor thrust-to-weight | Propellant | Thrust |
 | --- | ---: | ---: | ---: | ---: |
-| 0.10 MJ | 3.3 kg | 2.7 kg | 3.0 kg | 0.25 MW |
-| 0.50 MJ | 16 kg | 14 kg | 15 kg | 1.2 MW |
-| 1.0 MJ | 33 kg | 28 kg | 30 kg | 2.5 MW |
-| 5.0 MJ | 164 kg | 138 kg | 151 kg | 12 MW |
+| Pad rail | none | 12 | 63 kg | 9.3 kN |
+| Tube | 44 m, 110 m/s, 75° | 6 | 47 kg | 3.7 kN |
+| Tube | 228 m, 250 m/s, 75° | 6 | 40 kg | 3.3 kN |
+| Tube | 583 m, 400 m/s, 80° | 8 | 36 kg | 4.1 kN |
 
-Self-braking spends a 130 m/s burn at 220 s specific impulse, about 6% of the thrown mass, and keeps 10% for the shell and thruster (at least 0.40 kg). A base net or berm deletes the thruster and the burn, so more of the throw is supplies. Above a few kilograms the delivered fraction is about 84% with a burn and about 92% with a catch.
+A 110 m/s assist is enough to drop the motor from a pad-class thrust-to-weight of 12 to 6 and still coast through 100 km. That cuts thrust from 9.3 kN to 3.7 kN and propellant from 63 kg to 47 kg. Giving the same hot motor only 110 m/s saves about 3 kg. The assist earns its keep by letting the motor be milder. A faster bore keeps helping: 250 m/s brings propellant to 40 kg. 400 m/s brings it to 36 kg, on a 583 m tube.
 
-A 0.5 MJ depot bank is the practical short-notice load: about 14 kg of supplies, 7.5 km downrange. That is on the order of a few days of water for one person, or a mix of water, a battery, and a repair kit. An 8 kg water load is a 9.5 kg throw, roughly 0.3 MJ and a 0.7 MW pulse.
-
-Farther bases need a faster exit, still at 14 g:
-
-| To the base | Exit speed | Bore length | Bank per kg thrown |
-| --- | ---: | ---: | ---: |
-| 5 km | 90 m/s | 29 m | 20 kJ |
-| 7.5 km | 110 m/s | 44 m | 30 kJ |
-| 20 km | 180 m/s | 118 m | 82 kJ |
-| 50 km | 285 m/s | 295 m | 204 kJ |
-
-The package arrives at the same speed it left. At 110 m/s that is a hard impact unless the base catches it or the package fires the landing burn. Vials and electronics that cannot take 14 g want a longer, gentler bore: the same 110 m/s at 5 g is a 123 m tube, and the energy per kilogram barely changes because most of it is kinetic energy.
-
-The ball liner has to grow with the package. Contact force scales with mass. The 1.5 kg Earth reference used nine loaded balls. A 16 kg throw wants about ten times that many, or a harder race. The coils want the same treatment. Force and current scale with mass. The bore length does not.
-
-This tube on Earth does not send cargo to the Moon. The sections below are the Earth bore the 14 g, 110 m/s choice was checked against, including air, a chute, and a small ascent motor.
+This is a point-mass flight with constant drag. It says the energy reaches 100 km. It does not model shock heating on the way up. One hundred kilometers is above the air. It is not orbit, and it is not the Moon. The supplies in this rocket are the emergency load. The tube's job ends when the motor is flying.
 
 ## Earth bore check
 

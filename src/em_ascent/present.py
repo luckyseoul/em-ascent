@@ -290,6 +290,25 @@ def figure_lunar() -> None:
     _ = electrical_j_per_kg
 
 
+def figure_assist() -> None:
+    """Propellant and thrust to a 100 km apogee. 10 kg supplies, 6 kg hardware."""
+    labels = ["Pad\nT/W 12", "110 m/s\nT/W 6", "250 m/s\nT/W 6", "400 m/s\nT/W 8"]
+    prop = [62.7, 47.0, 40.3, 36.3]
+    thrust = [9.26, 3.71, 3.31, 4.10]
+    fig, axes = plt.subplots(1, 2, figsize=(9.4, 4.0))
+    axes[0].bar(labels, prop, color=[RUST, BLUE, BLUE, BLUE])
+    axes[0].set_ylabel("Propellant to a 100 km apogee (kg)")
+    axes[0].set_title("Same 16 kg dry rocket")
+    axes[1].bar(labels, thrust, color=[RUST, GREEN, GREEN, GREEN])
+    axes[1].set_ylabel("Motor thrust (kN)")
+    axes[1].set_title("Thrust after the assist")
+    for ax in axes:
+        ax.grid(True, axis="y", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(FIG / "assist_100km.png", dpi=150)
+    plt.close(fig)
+
+
 def main() -> None:
     FIG.mkdir(parents=True, exist_ok=True)
     choice, rows = _shot_arrays()
@@ -299,6 +318,7 @@ def main() -> None:
     figure_paths(choice)
     figure_recovery(choice)
     figure_lunar()
+    figure_assist()
     print("wrote", FIG)
 
 
