@@ -1,21 +1,20 @@
 # em-ascent
 
-The tube is a launch assist. It shoves a small supply rocket onto a climbing path so the motor can light already moving, at lower thrust. The rocket does the rest of the ascent.
+Magnetic launch assist for a small orbital rocket. The bore supplies the first few hundred meters per second. A two-stage rocket flies the rest of the way to a 200 km orbit. The assist exists to cut the fuel that rocket has to lift.
 
-The worked case is 10 kg of supplies and 6 kg of shell, motor, and sleeve. Diameter 20 cm, drag coefficient 0.35, specific impulse 260 s. The target is a 100 km apogee, above the atmosphere. The bore is 14 g. The motor lights on the open rail and flies a gravity turn.
+Ten kilograms of supplies, eastward orbit. First stage 282 s, second stage 330 s. Pad delta-v budget 9200 m/s, split 5400 and 3800. Stage hardware is 10% of first-stage propellant and 14% of second-stage propellant. The bore speed is taken off the first stage.
 
-![Propellant and thrust to 100 km](docs/figures/assist_100km.png)
+![Fuel to orbit, and supplies in a fixed rocket](docs/figures/orbit_fuel.png)
 
-| Launch | Bore | Motor thrust-to-weight | Propellant | Thrust |
+| Assist | Bore at 14 g | Propellant for 10 kg | Liftoff mass | Supplies in the pad-size rocket |
 | --- | ---: | ---: | ---: | ---: |
-| Pad rail | none | 12 | 63 kg | 9.3 kN |
-| Tube | 44 m, 110 m/s, 75° | 6 | 47 kg | 3.7 kN |
-| Tube | 228 m, 250 m/s, 75° | 6 | 40 kg | 3.3 kN |
-| Tube | 583 m, 400 m/s, 80° | 8 | 36 kg | 4.1 kN |
+| None | none | 753 kg | 840 kg | 10.0 kg |
+| 110 m/s | 44 m | 676 kg | 755 kg | 11.1 kg |
+| 250 m/s | 228 m | 594 kg | 665 kg | 12.6 kg |
+| 400 m/s | 583 m | 522 kg | 586 kg | 14.3 kg |
+| 800 m/s | 2.3 km | 385 kg | 434 kg | 19.3 kg |
 
-A 110 m/s assist is enough to drop the motor from a pad-class thrust-to-weight of 12 to 6 and still coast through 100 km. That cuts thrust from 9.3 kN to 3.7 kN and propellant from 63 kg to 47 kg. Giving the same hot motor only 110 m/s saves about 3 kg. The assist earns its keep by letting the motor be milder. A faster bore keeps helping: 250 m/s brings propellant to 40 kg. 400 m/s brings it to 36 kg, on a 583 m tube.
-
-This is a point-mass flight with constant drag. It says the energy reaches 100 km. It does not model shock heating on the way up. One hundred kilometers is above the air. It is not orbit, and it is not the Moon. The supplies in this rocket are the emergency load. The tube's job ends when the motor is flying.
+A 110 m/s bore cuts 78 kg of fuel, about 10%. A 400 m/s bore cuts 231 kg, about 31%, and the same 840 kg rocket carries 14 kg of supplies instead of 10. An 800 m/s bore cuts the fuel roughly in half. Orbit is the ordinary staged burn after the muzzle. The tube is there to make that burn smaller.
 
 ## Earth bore check
 

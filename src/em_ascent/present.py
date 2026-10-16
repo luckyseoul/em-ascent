@@ -309,6 +309,28 @@ def figure_assist() -> None:
     plt.close(fig)
 
 
+def figure_orbit() -> None:
+    from em_ascent.orbit import payload_for_liftoff, stack_for_payload
+
+    pad = stack_for_payload(10.0, 0.0)
+    speeds = [0, 110, 250, 400, 800]
+    prop = [stack_for_payload(10.0, v).propellant_kg for v in speeds]
+    pay = [payload_for_liftoff(pad.liftoff_kg, v) for v in speeds]
+    labels = ["Pad", "110 m/s", "250 m/s", "400 m/s", "800 m/s"]
+    fig, axes = plt.subplots(1, 2, figsize=(9.6, 4.0))
+    axes[0].bar(labels, prop, color=[RUST, BLUE, BLUE, BLUE, BLUE])
+    axes[0].set_ylabel("Propellant for 10 kg to orbit (kg)")
+    axes[0].set_title("Fuel the rocket has to carry")
+    axes[1].bar(labels, pay, color=[RUST, GREEN, GREEN, GREEN, GREEN])
+    axes[1].set_ylabel("Supplies in an 840 kg rocket (kg)")
+    axes[1].set_title("Same liftoff mass")
+    for ax in axes:
+        ax.grid(True, axis="y", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(FIG / "orbit_fuel.png", dpi=150)
+    plt.close(fig)
+
+
 def main() -> None:
     FIG.mkdir(parents=True, exist_ok=True)
     choice, rows = _shot_arrays()
@@ -319,6 +341,7 @@ def main() -> None:
     figure_recovery(choice)
     figure_lunar()
     figure_assist()
+    figure_orbit()
     print("wrote", FIG)
 
 
