@@ -55,7 +55,7 @@ def pusher_ring():
     ax.plot([68.5, 71.5], [28, 28], color=RUST, lw=1.2)
     ax.plot([68.5, 71.5], [68, 68], color=RUST, lw=1.2)
     ax.text(76, 48, "40 m stroke\nthen the shoes\nrun off the motors", fontsize=8, color=RUST, va="center")
-    ax.text(50, 90, "Shoes let go at 24 m/s    14.9 t left in the tanks    43 MW peak", ha="center", fontsize=9, color=INK)
+    ax.text(50, 90, "Shoes let go at 23 m/s    14.9 t left in the tanks    115 MW peak", ha="center", fontsize=9, color=INK)
     fig.tight_layout()
     fig.savefig(FIG / "pusher-ring.png", dpi=150)
     plt.close(fig)
@@ -70,7 +70,7 @@ def hold_down():
     ax.text(50, 54, "Stack\n5,300 t", ha="center", va="center", fontsize=10, color=BLUE)
     ax.annotate("", xy=(50, 46), xytext=(50, 36), arrowprops=dict(arrowstyle="-|>", color=GREEN, lw=1.8))
     ax.text(8, 62, "Release becomes a shove\ninstead of a drop", fontsize=9, color=GREEN, ha="left")
-    ax.text(78, 62, "4 to 8 m/s\nunder 15 t of propellant\nplume leaves the plate sooner", fontsize=8, color=INK, ha="center")
+    ax.text(78, 62, "10 m at 5 MN\nleaves 7.6 t\nplume leaves the plate sooner", fontsize=8, color=INK, ha="center")
     fig.tight_layout()
     fig.savefig(FIG / "hold-down.png", dpi=150)
     plt.close(fig)
@@ -97,19 +97,19 @@ def tower_rails():
 
 
 def fuel_chart():
-    labels = ["10 m/s", "15 m/s", "20 m/s", "50 m/s", "100 m/s"]
-    tons = [17, 25, 33, 82, 163]
+    labels = ["10 m/s", "20 m/s", "50 m/s", "100 m/s"]
+    tons = [45, 88, 205, 373]
     fig, ax = plt.subplots(figsize=(8.4, 4.6))
     fig.patch.set_facecolor(PALE)
     ax.set_facecolor(PALE)
-    colors = [BLUE, BLUE, BLUE, GREEN, GOLD]
+    colors = [BLUE, BLUE, GREEN, GOLD]
     ax.bar(labels, tons, color=colors)
     for i, value in enumerate(tons):
-        ax.text(i, value + 3, f"{value} t", ha="center", va="bottom", fontsize=9, color=INK)
+        ax.text(i, value + 6, f"{value} t", ha="center", va="bottom", fontsize=9, color=INK)
     ax.set_ylabel("Booster propellant left on the ground")
-    ax.set_xlabel("Speed added at liftoff, 5,300 t stack, 327 s sea-level impulse")
-    ax.set_ylim(0, 190)
-    ax.set_title("Fuel the assist takes off the first stage")
+    ax.set_xlabel("Speed present at liftoff, same burnout, 5,300 t stack")
+    ax.set_ylim(0, 430)
+    ax.set_title("What that liftoff speed is worth in the integration")
     ax.grid(True, axis="y", alpha=0.3)
     fig.tight_layout()
     fig.savefig(FIG / "fuel-save.png", dpi=150)

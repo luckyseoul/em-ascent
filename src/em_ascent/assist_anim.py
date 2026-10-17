@@ -113,7 +113,7 @@ def _frame(i: int, plain: dict, full: dict, light: dict, offload_kg: float) -> s
 
 
 def _frame_lead(t: float, h0: float, h1: float, h2: float, v0: float, v1: float, v2: float, offload_t: float) -> str:
-    """Park the unassisted rocket and draw the other two by how far they lead."""
+    """Park the unassisted rocket. The gap is a clock lead on the same flight."""
     lead_scale = 340.0 / 1300.0
     base_y = 520.0
     y1 = base_y - (h1 - h0) * lead_scale
@@ -129,14 +129,14 @@ def _frame_lead(t: float, h0: float, h1: float, h2: float, v0: float, v1: float,
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="720" viewBox="0 0 1680 720">
   <rect width="1680" height="720" fill="#14181d"/>
-  <text x="40" y="46" fill="#f4f1ea" font-family="Georgia, serif" font-size="28">Lead from leaving the fuel behind</text>
+  <text x="40" y="46" fill="#f4f1ea" font-family="Georgia, serif" font-size="28">Same flight, 0.6 s early</text>
   <text x="1640" y="46" text-anchor="end" fill="#c4a35a" font-family="sans-serif" font-size="22">{t:.0f} s</text>
   <text x="280" y="96" text-anchor="middle" fill="#9aa3ad" font-family="sans-serif" font-size="16">Engines only</text>
   <text x="840" y="96" text-anchor="middle" fill="#8fd0ad" font-family="sans-serif" font-size="16">Ring, tanks full</text>
   <text x="1400" y="96" text-anchor="middle" fill="#c4a35a" font-family="sans-serif" font-size="16">Ring, {offload_t:.1f} t left behind</text>
   <line x1="80" y1="{base_y + 90:.1f}" x2="1600" y2="{base_y + 90:.1f}" stroke="#3a414a" stroke-width="2"/>
   <clipPath id="sky"><rect x="0" y="108" width="1680" height="500"/></clipPath>
-  <text x="840" y="652" text-anchor="middle" fill="#9aa3ad" font-family="sans-serif" font-size="14">The line is the unassisted altitude. The other two are drawn by how far they lead.</text>
+  <text x="840" y="652" text-anchor="middle" fill="#9aa3ad" font-family="sans-serif" font-size="14">The height gap is climb still left in that 0.6 s. Cutoff altitudes match.</text>
   <g clip-path="url(#sky)">
   {ship(280, base_y)}
   {ship(840, y1)}
@@ -144,14 +144,14 @@ def _frame_lead(t: float, h0: float, h1: float, h2: float, v0: float, v1: float,
   </g>
   <text x="280" y="700" text-anchor="middle" fill="#d5dbe3" font-family="sans-serif" font-size="15">{h0/1000:.1f} km    {v0:.0f} m/s</text>
   <text x="840" y="700" text-anchor="middle" fill="#d5dbe3" font-family="sans-serif" font-size="15">+{h1 - h0:.0f} m    {v1:.0f} m/s</text>
-  <text x="1400" y="700" text-anchor="middle" fill="#c4a35a" font-family="sans-serif" font-size="15">+{h2 - h0:.0f} m    {v2:.0f} m/s</text>
+  <text x="1400" y="700" text-anchor="middle" fill="#c4a35a" font-family="sans-serif" font-size="15">0.6 s early    +{h2 - h0:.0f} m</text>
 </svg>
 '''
 
 
 def render(tmp: Path | None = None) -> Path:
     plain, full, light, offload, n = _traces()
-    # Same burn, sampled coarsely, so the lighter stack can pull away after the stroke.
+    # Same burn, sampled coarsely, so the clock lead can be seen as altitude.
     gate = 130_000.0
     plain_long = simulate(0.0, 0.0, 0.0, gate_m=gate, sample_s=2.0)
     full_long = simulate(ASSIST_N, STROKE_M, 0.0, gate_m=gate, sample_s=2.0)

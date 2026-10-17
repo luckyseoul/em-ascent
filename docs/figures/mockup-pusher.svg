@@ -8,7 +8,7 @@
   <rect x="80" y="788" width="760" height="18" fill="#2a241c"/>
 
   <polygon points="430,760 530,760 555,690 405,690" fill="#6a4a32" opacity="0.85"/>
-  <text x="620" y="730" fill="#e7c4a0" font-family="sans-serif" font-size="14">Plume stays on the plate</text>
+  <text x="620" y="730" fill="#e7c4a0" font-family="sans-serif" font-size="14">Plume starts on the plate</text>
 
   <g>
     <polygon points="392,690 412,690 406,640 398,640" fill="#8d97a3"/>
@@ -42,12 +42,12 @@
     <rect x="900" y="180" width="440" height="420" rx="10" fill="#1c2228" stroke="#3a414a"/>
     <text x="928" y="230" fill="#f4f1ea" font-size="20">What the integration found</text>
     <text x="928" y="280" fill="#9aa3ad" font-size="15">Shoes release</text>
-    <text x="928" y="308" fill="#f4f1ea" font-size="22">3.6 s, stack at 24 m/s</text>
+    <text x="928" y="308" fill="#f4f1ea" font-size="22">3.5 s, stack at 23 m/s</text>
     <text x="928" y="352" fill="#9aa3ad" font-size="15">Most of that speed is the Raptors</text>
     <text x="928" y="400" fill="#9aa3ad" font-size="15">Same burnout speed if you leave</text>
     <text x="928" y="434" fill="#c4a35a" font-size="28">14.9 t in the tanks</text>
     <text x="928" y="470" fill="#d5dbe3" font-size="16">11.7 t oxygen, 3.2 t methane</text>
-    <text x="928" y="520" fill="#9aa3ad" font-size="15">Peak electrical power</text>
-    <text x="928" y="550" fill="#f4f1ea" font-size="22">43 MW, under a second</text>
+    <text x="928" y="520" fill="#9aa3ad" font-size="15">Mechanical power at the shoes</text>
+    <text x="928" y="550" fill="#f4f1ea" font-size="22">115 MW peak, 200 MJ</text>
   </g>
 </svg>

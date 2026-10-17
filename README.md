@@ -29,9 +29,15 @@ Booster dry mass of 275 t is the published Block 1 number. Block 3 dry mass is n
 
 The engines are at 80.8 MN before the clamps let go. The pusher adds force on top of that, straight up, until the shoes run off the end of the stroke. Pitch follows altitude, the same schedule with and without the pusher, so the turn is not doing the work. The comparison is booster burnout speed. Propellant left in the tanks is the largest offload that still matches the unassisted burnout speed.
 
-The reference ring is 5 MN and 40 m. The shoes let go at 3.6 s. The stack is then at 24 m/s, and most of that speed is the Raptors. With the tanks full, burnout speed is 4.7 m/s higher. Leave 14.9 t in the farm and the burnout speed matches: 11.7 t of oxygen and 3.2 t of methane.
+The reference ring is 5 MN and 40 m. The shoes let go at 3.5 s. The stack is then at 23 m/s, and most of that speed is the Raptors. The push delivers 17.6 MN·s and 200 MJ. Mechanical power at the shoes peaks at 115 MW, which is the force times the speed at release. The stroke lasts 3.5 s. Electrical power is higher than 115 MW by whatever the motors lose.
 
-Left is engines only. Middle is the ring with the tanks still full. Right is the ring with the 14.9 t left in the farm, so the stack is lighter from the first moment. The opening is the stroke itself. Five seconds in, the lighter stack is only about half a meter ahead of the full tanks. The second half draws the other two by how far they lead the unassisted rocket. At 20 s that lead is 70 m, and 9 m of it is the missing propellant. At 60 s the leads are 279 m and 92 m. At 120 s they are 872 m and 500 m. Near burnout, at 144 s, the lighter stack is 1.3 km ahead and the full tanks are 0.45 km ahead. Same engines, same stroke. The extra distance is the weight that never left the ground.
+Leave 14.9 t in the farm and the booster burnout speed matches the unassisted flight: 11.7 t of oxygen and 3.2 t of methane. That 14.9 t is 0.59 s of booster burn at the sea-level flow of 25.2 t/s. The lighter stack flies the same trajectory 0.6 s early. Speed at a given altitude matches. At the lighter stack's own cutoff it is 8 m higher. A frame near 144 s can show it 1.3 km up on the other two, because the baseline still has 0.6 s of climb left, at about 2.2 km/s.
+
+Full tanks, with the same shove and no propellant removed, are a few meters per second faster at cutoff. That leftover changes when the pitch program changes. The offload does not: a pitch stop at 45° leaves 14.6 t, and a stop at 80° leaves 15.2 t. Quote the tonnes.
+
+This stack is booked as 5,300 t, with 3,650 t in the booster and 1,600 t in the ship. That leaves 50 t for both dry masses and the payload, so the books do not close, and cutoff in the model is 2,630 m/s at 111 km. The offload follows liftoff thrust-to-weight. The same ring on a 5,625 t stack leaves 18.1 t, and on a 5,725 t stack leaves 19.2 t. Thirty-three engines at the 280 tf stand rating, on the 5,300 t stack, leave 11.1 t. Carry 14.9 t as the 5,300 t, 80.8 MN case, inside a range of about 11 to 19 t.
+
+Left is engines only. Middle is the ring with the tanks still full. Right is the ring with the 14.9 t left in the farm. The opening is the stroke. The second half draws the clock lead as altitude, and the caption says the cutoff altitudes match.
 
 ![Liftoff with and without the ring](docs/figures/launch-compare.gif)
 
@@ -45,25 +51,28 @@ Left is engines only. Middle is the ring with the tanks still full. Right is the
 | 10 MN | 19.8 t | 27.7 t | 33.6 t | 42.7 t |
 | 15 MN | 27.9 t | 38.9 t | 47.2 t | 59.9 t |
 
-Fifteen meganewtons through a shoe is three Raptors standing on a fitting. That row is the edge of what the skirt can even be asked to do. The 5 MN ring is the case that fits the mount.
+Fifteen meganewtons is six Raptors at the 250 tf flight rating. Split across two shoes, that is three Raptors on a fitting. That row is the edge of what the skirt can even be asked to do. The 5 MN ring is the case that fits the mount.
 
-A rocket-equation estimate that only subtracts an exit speed from the whole stack, and ignores that the engines are already lit, is larger than this. It is plotted below so the two claims stay apart. The liftoff integration is the one used for the retrofit.
+The grid is one formula. Propellant left behind is about the push impulse times the propellant flow, divided by thrust minus weight. Thrust minus weight is 28.8 MN, so 36% of the thrust is accelerating the stack, and an outside push is worth about 2.8 times the rocket-equation credit for the same impulse. The formula sits within about 5% of every cell above. For the reference ring it gives 15.4 t against the integrated 14.9 t. Counted as a pure delta-v, that impulse is only 3.3 m/s and the rocket equation returns 5.5 t.
 
-![Rocket-equation estimate, engines not in the stroke](docs/figures/fuel-save.png)
+A speed that is actually present at liftoff is worth more than the ring, because the ring never adds more than those 3.3 m/s. The integration, given that speed as an initial condition and then flown to the same burnout, leaves the following propellant in the farm. The rocket-equation column is the 2.8-times-smaller credit.
 
-| Added speed | Propellant not loaded |
-| --- | ---: |
-| 10 m/s | 17 t |
-| 15 m/s | 25 t |
-| 20 m/s | 33 t |
-| 50 m/s | 82 t |
-| 100 m/s | 163 t |
+![Propellant a real liftoff speed is worth](docs/figures/fuel-save.png)
 
-About 78 percent of that is oxygen and 22 percent is methane. A retrofit cannot honestly buy the 50 and 100 m/s rows. The stroke on this pad is tens of meters, and the skirt cannot take a local load comparable to the whole engine bay. Those rows are the reason a new track would be a new launch structure.
+| Speed at liftoff | This integration | Rocket equation |
+| --- | ---: | ---: |
+| 10 m/s | 45 t | 17 t |
+| 20 m/s | 88 t | 33 t |
+| 50 m/s | 205 t | 82 t |
+| 100 m/s | 373 t | 163 t |
+
+About 78 percent of that is oxygen and 22 percent is methane. The 50 and 100 m/s rows need a new track. The stroke on this pad is tens of meters, and the skirt cannot take a local load comparable to the whole engine bay.
 
 ## Three retrofits
 
-**Pusher ring.** A truss on the existing mount foundation, outside the engine bells. Linear motors push bolted shoes on the aft skirt for 40 m, then the shoes run off. Engines are already at full thrust. The flame stays on the steel plate. Five meganewtons. The integration leaves 14.9 t of methalox in the tanks at the same booster burnout speed. Peak power is about 43 MW for under a second.
+**Pusher ring.** A truss on the existing mount foundation. Linear motors push bolted shoes on the aft skirt for 40 m, then the shoes run off. Engines are already at full thrust. Five meganewtons. The integration leaves 14.9 t of methalox in the tanks at the same booster burnout speed. The shoes deliver 200 MJ, and mechanical power peaks at 115 MW as they let go.
+
+The bells climb into the ring. After the first moments the steel is in the plume, so "the flame stays on the plate" describes liftoff, not the rest of the stroke. The hold-down clamps already react about 29 MN at release, 80.8 MN of thrust against 52 MN of weight. Five meganewtons at those hardpoints is a familiar load, pushed up.
 
 ![Pusher ring mockup](docs/figures/mockup-pusher.png)
 

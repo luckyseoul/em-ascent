@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "em-ascent"
 version = "0.1.0"
-description = "Electromagnetic launch tube for small rockets: spread the start so the motor can take over already climbing."
+description = "Magnetic pad retrofit that leaves Super Heavy propellant in the tanks."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
@@ -14,9 +14,6 @@ dependencies = ["numpy", "scipy"]
 
 [project.optional-dependencies]
 plot = ["matplotlib"]
-
-[project.scripts]
-em-ascent = "em_ascent.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

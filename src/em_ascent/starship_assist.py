@@ -101,33 +101,39 @@ def simulate(
     at_gate.terminal = True
     at_gate.direction = 1
 
+    def at_stroke(_t: float, y: np.ndarray) -> float:
+        return y[1] - stroke_m
+
+    at_stroke.terminal = False
+    at_stroke.direction = 1
+
+    events = [at_meco, at_gate]
+    if stroke_m > 0.0:
+        events.append(at_stroke)
+
     sol = solve_ivp(
         deriv,
         (0.0, 250.0),
         (0.0, 0.0, 0.0, 0.0, m0),
-        events=[at_meco, at_gate],
+        events=events,
         method="RK45",
         rtol=1e-6,
         atol=1e-6,
         max_step=0.1,
         dense_output=True,
     )
+    # Only the terminal events end the flight. The stroke crossing must not.
     t_gate = float(sol.t[-1])
-    for events in sol.t_events:
-        if events.size:
-            t_gate = min(t_gate, float(events[0]))
+    for events_at in sol.t_events[:2]:
+        if events_at.size:
+            t_gate = min(t_gate, float(events_at[0]))
     x, h, vx, vy, mass = sol.sol(t_gate)
-    # Shoe release: first time height reaches the stroke, if there is one.
     t_release = None
     v_release = None
-    if stroke_m > 0.0 and sol.sol is not None:
-        times = np.linspace(0.0, t_gate, 400)
-        heights = sol.sol(times)[1]
-        idx = int(np.argmax(heights >= stroke_m))
-        if heights[idx] >= stroke_m:
-            t_release = float(times[idx])
-            state = sol.sol(t_release)
-            v_release = float(math.hypot(state[2], state[3]))
+    if stroke_m > 0.0 and len(sol.t_events) > 2 and sol.t_events[2].size and sol.sol is not None:
+        t_release = float(sol.t_events[2][0])
+        state = sol.sol(t_release)
+        v_release = float(math.hypot(state[2], state[3]))
     speed = float(math.hypot(vx, vy))
     trace = None
     if sample_s and sol.sol is not None:
