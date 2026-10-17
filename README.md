@@ -31,6 +31,10 @@ The engines are at 80.8 MN before the clamps let go. The pusher adds force on to
 
 The reference ring is 5 MN and 40 m. The shoes let go at 3.6 s. The stack is then at 24 m/s, and most of that speed is the Raptors. With the tanks full, burnout speed is 4.7 m/s higher. Leave 14.9 t in the farm and the burnout speed matches: 11.7 t of oxygen and 3.2 t of methane.
 
+The first five seconds, from the same liftoff integration. Left side is engines only. Right side is the same engines plus the ring. The gap opens while the shoes are on the motors, then both keep climbing after the shoes run off.
+
+![Liftoff with and without the ring](docs/figures/launch-compare.gif)
+
 ![Simulated propellant left in the tanks](docs/figures/sim-fuel.png)
 
 | Force | 20 m stroke | 40 m stroke | 60 m stroke | 100 m stroke |

@@ -55,6 +55,7 @@ def simulate(
     stroke_m: float = 0.0,
     prop_offload_kg: float = 0.0,
     gate_m: float | None = None,
+    sample_s: float | None = None,
 ) -> dict:
     """Fly to booster burnout, or to `gate_m` if that is set.
 
@@ -128,6 +129,16 @@ def simulate(
             state = sol.sol(t_release)
             v_release = float(math.hypot(state[2], state[3]))
     speed = float(math.hypot(vx, vy))
+    trace = None
+    if sample_s and sol.sol is not None:
+        ts = np.arange(0.0, max(t_gate, sample_s), sample_s)
+        ts = ts[ts <= t_gate + 1e-9]
+        st = sol.sol(ts)
+        trace = {
+            "t": ts,
+            "h": st[1],
+            "v": np.hypot(st[2], st[3]),
+        }
     return {
         "t_gate_s": t_gate,
         "speed_mps": speed,
@@ -139,6 +150,7 @@ def simulate(
         "t_release_s": t_release,
         "v_release_mps": v_release,
         "liftoff_tw": (THRUST_SL_N + assist_n) / (m0 * G0),
+        "trace": trace,
     }
 
 
