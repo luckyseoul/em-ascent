@@ -31,7 +31,7 @@ The engines are at 80.8 MN before the clamps let go. The pusher adds force on to
 
 The reference ring is 5 MN and 40 m. The shoes let go at 3.6 s. The stack is then at 24 m/s, and most of that speed is the Raptors. With the tanks full, burnout speed is 4.7 m/s higher. Leave 14.9 t in the farm and the burnout speed matches: 11.7 t of oxygen and 3.2 t of methane.
 
-The first five seconds, from the same liftoff integration. Left side is engines only. Right side is the same engines plus the ring. The gap opens while the shoes are on the motors, then both keep climbing after the shoes run off.
+Left is engines only. Middle is the ring with the tanks still full. Right is the ring with the 14.9 t left in the farm, so the stack is lighter from the first moment. The opening is the stroke itself. Five seconds in, the lighter stack is only about half a meter ahead of the full tanks. The second half draws the other two by how far they lead the unassisted rocket. At 20 s that lead is 70 m, and 9 m of it is the missing propellant. At 60 s the leads are 279 m and 92 m. At 120 s they are 872 m and 500 m. Near burnout, at 144 s, the lighter stack is 1.3 km ahead and the full tanks are 0.45 km ahead. Same engines, same stroke. The extra distance is the weight that never left the ground.
 
 ![Liftoff with and without the ring](docs/figures/launch-compare.gif)
 
