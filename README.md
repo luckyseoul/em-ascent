@@ -61,15 +61,15 @@ About 78 percent of that is oxygen and 22 percent is methane. A retrofit cannot 
 
 **Pusher ring.** A truss on the existing mount foundation, outside the engine bells. Linear motors push bolted shoes on the aft skirt for 40 m, then the shoes run off. Engines are already at full thrust. The flame stays on the steel plate. Five meganewtons. The integration leaves 14.9 t of methalox in the tanks at the same booster burnout speed. Peak power is about 43 MW for under a second.
 
-![Aft-skirt pusher ring](docs/figures/pusher-ring.png)
+![Pusher ring mockup](docs/figures/mockup-pusher.png)
 
 **Hold-down stroke.** The clamps already carry the fueled stack. Give them about 10 m of powered travel. At 5 MN that leaves 7.6 t in the tanks. The plume also spends less time on the deluge plate.
 
-![Powered hold-down](docs/figures/hold-down.png)
+![Hold-down mockup](docs/figures/mockup-holddown.png)
 
 **Tower-column rail.** A second pin set lower on the booster, in a rail lagged to the tower columns. The grid-fin pins are too high. Little tower remains above them. The column load is the same few-meganewton class as the ring. Use this only if the mount foundation cannot take the ring.
 
-![Second pin set](docs/figures/tower-rails.png)
+![Tower rail mockup](docs/figures/mockup-tower.png)
 
 Electricity is a capacitor yard beside the pad. Starbase already runs an air separation plant. The structure is the constraint, not the energy.
 
