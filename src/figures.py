@@ -55,7 +55,7 @@ def pusher_ring():
     ax.plot([68.5, 71.5], [28, 28], color=RUST, lw=1.2)
     ax.plot([68.5, 71.5], [68, 68], color=RUST, lw=1.2)
     ax.text(76, 48, "40 m stroke\nthen the shoes\nrun off the motors", fontsize=8, color=RUST, va="center")
-    ax.text(50, 90, "9 m/s gained    14 t methalox left on the ground    43 MW peak", ha="center", fontsize=9, color=INK)
+    ax.text(50, 90, "Shoes let go at 24 m/s    14.9 t left in the tanks    43 MW peak", ha="center", fontsize=9, color=INK)
     fig.tight_layout()
     fig.savefig(FIG / "pusher-ring.png", dpi=150)
     plt.close(fig)
@@ -116,12 +116,44 @@ def fuel_chart():
     plt.close(fig)
 
 
+def sim_fuel():
+    import json
+
+    rows = json.loads((ROOT / "data" / "starship_assist_grid.json").read_text())
+    fig, ax = plt.subplots(figsize=(8.6, 4.8))
+    fig.patch.set_facecolor(PALE)
+    ax.set_facecolor(PALE)
+    colors = {2.5: STEEL, 5.0: BLUE, 8.0: GREEN, 10.0: RUST, 15.0: GOLD}
+    for force in (2.5, 5.0, 8.0, 10.0, 15.0):
+        subset = [r for r in rows if r["assist_mn"] == force]
+        subset.sort(key=lambda r: r["stroke_m"])
+        ax.plot(
+            [r["stroke_m"] for r in subset],
+            [r["offload_t"] for r in subset],
+            "o-",
+            color=colors[force],
+            label=f"{force:g} MN",
+        )
+    ax.scatter([40], [14.91], s=80, facecolors="none", edgecolors=INK, linewidths=1.4, zorder=5)
+    ax.annotate("reference ring", xy=(40, 14.91), xytext=(48, 22), fontsize=8, color=INK,
+                arrowprops=dict(arrowstyle="->", color=INK, lw=0.7))
+    ax.set_xlabel("Stroke along the mount (m)")
+    ax.set_ylabel("Booster propellant left in the tanks (t)")
+    ax.set_title("Same booster burnout speed, engines lit the whole way")
+    ax.grid(True, alpha=0.3)
+    ax.legend(title="Pusher force", frameon=False)
+    fig.tight_layout()
+    fig.savefig(FIG / "sim-fuel.png", dpi=150)
+    plt.close(fig)
+
+
 def main():
     FIG.mkdir(parents=True, exist_ok=True)
     pusher_ring()
     hold_down()
     tower_rails()
     fuel_chart()
+    sim_fuel()
     print(FIG)
 
 
