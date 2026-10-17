@@ -1,145 +1,67 @@
-# em-ascent
+# Starship electromagnetic launch assist
 
-Magnetic launch assist for a small orbital rocket. The bore supplies the first few hundred meters per second. A two-stage rocket flies the rest of the way to a 200 km orbit. The assist exists to cut the fuel that rocket has to lift.
+A retrofit on the Starbase mount. The bore, or in this case a short pusher, supplies the first few meters per second. Super Heavy still does the ascent. The point is methalox left in the farm tanks, not a gun that replaces the rocket.
 
-Ten kilograms of supplies, eastward orbit. First stage 282 s, second stage 330 s. Pad delta-v budget 9200 m/s, split 5400 and 3800. Stage hardware is 10% of first-stage propellant and 14% of second-stage propellant. The bore speed is taken off the first stage.
+Starship's tank wall is 304L stainless, which will not serve as an armature. The shoes are bolted on. The chopsticks stay a catching tool. They are built for a nearly empty booster, not a 5,300 t liftoff.
 
-![Fuel to orbit, and supplies in a fixed rocket](docs/figures/orbit_fuel.png)
+## Vehicle and pad
 
-| Assist | Bore at 14 g | Propellant for 10 kg | Liftoff mass | Supplies in the pad-size rocket |
-| --- | ---: | ---: | ---: | ---: |
-| None | none | 753 kg | 840 kg | 10.0 kg |
-| 110 m/s | 44 m | 676 kg | 755 kg | 11.1 kg |
-| 250 m/s | 228 m | 594 kg | 665 kg | 12.6 kg |
-| 400 m/s | 583 m | 522 kg | 586 kg | 14.3 kg |
-| 800 m/s | 2.3 km | 385 kg | 434 kg | 19.3 kg |
+Block 3 public figures. Where two numbers are in circulation, both are listed.
 
-A 110 m/s bore cuts 78 kg of fuel, about 10%. A 400 m/s bore cuts 231 kg, about 31%, and the same 840 kg rocket carries 14 kg of supplies instead of 10. An 800 m/s bore cuts the fuel roughly in half. Orbit is the ordinary staged burn after the muzzle. The tube is there to make that burn smaller.
+| Item | Figure |
+| --- | --- |
+| Stack | 124.4 m, 9 m diameter, about 5,000 to 5,300 t fully fueled |
+| Super Heavy | 72.3 m, about 3,650 t propellant |
+| Propellant split | about 2,860 t liquid oxygen, 790 t liquid methane, mixture ratio about 3.6 |
+| Booster engines | 33 Raptor 3, liftoff thrust 80.8 MN |
+| Liftoff thrust-to-weight | about 1.55 |
+| Ship | about 52 m, about 1,600 t propellant, 3 sea-level and 3 vacuum Raptors |
+| Raptor 3, flight rating | 250 tf sea level, about 275 tf vacuum |
+| Raptor 3, stand post (Aug 2024) | 280 tf, 1,525 kg, 350 bar, 350 s |
+| Chamber pressure | up to 330 bar in operation, 350 bar design |
+| Cycle | full-flow staged combustion, methane and oxygen, subcooled |
+| Tower | about 146 m, chopsticks at the grid-fin catch pins |
+| Mount | orbital launch mount over a water-cooled steel plate, hold-down clamps, no flame trench |
 
-## Earth bore check
+Booster dry mass of 275 t is the published Block 1 number. Block 3 dry mass is not published.
 
-A 1.50 kg craft, 70 mm across, on a charged bank. The proof burn is 0.4 s and the bore run is 1.1 s. With air, the same 51 N motor reaches 2.38 km. A cold motor coasts to about 400 m and a 0.9 m chute lands it at about 5 m/s.
+## What the shove is worth
 
-![Three departures from the same tube](docs/figures/use_paths.png)
+Sea-level exhaust velocity is about 3,210 m/s (327 s). On a 5,300 t stack, speed added at liftoff comes off the booster propellant load.
 
-![Seconds from the commit](docs/figures/sequence.png)
+![Propellant left on the ground](docs/figures/fuel-save.png)
 
-![Depot tube, to scale](docs/figures/layout.png)
-
-The last abort is the end of the proof burn. After that the bore is cold and the motor lights on the open rail.
-
-![What the tube changes for a 1 km package](docs/figures/compare.png)
-
-![Chute impacts if the motor stays cold](docs/figures/recovery.png)
-
-## Length and curvature
-
-Peak axial load and tube length are the same decision. For this 110 m/s, 65° exit:
-
-| Barrel load | Tube length | Muzzle height | Peak electrical power |
-| --- | ---: | ---: | ---: |
-| 10 g | 64.8 m | 58.1 m | 88 kW |
-| 14 g | 47.3 m | 42.3 m | 119 kW |
-| 18 g | 37.6 m | 33.5 m | 150 kW |
-| 28 g | 25.5 m | 22.5 m | 226 kW |
-| 50 g | 15.9 m | 13.8 m | 385 kW |
-| 70 g | 12.4 m | 10.6 m | 521 kW |
-
-Stored electrical energy stays near 49 kJ across that table, at 20% coil efficiency. A longer tube lowers the peak power and the peak g. It does not save much energy. The kinetic energy is set by the exit speed.
-
-The reference pick is the 14 g row. It is the mildest barrel that still finishes inside 50 m. Fourteen g for about one second is a hard push for a small airframe, and it is less than the 19 g burnout load of the high-thrust pad motor below.
-
-Curvature belongs at the breech, while the craft is still slow. The reference turn is a clothoid into a 1.5 m radius arc and a clothoid back to straight. Turn acceleration is 3 g. Peak side load is 6.0 g, at about 10 m/s. Side load on a circular turn run at constant acceleration from rest is `2 * a * Δθ`, so the radius does not set that ratio. A bigger radius spends more tube and finishes the turn faster, which is worse for the balls. A waterslide that keeps curving out to the muzzle would put the side load on the fast end. At 110 m/s the same 57° turn needs a radius of tens of meters or the balls get crushed.
-
-![Tube length against barrel load](docs/figures/length_vs_g.png)
-
-![Reference shot, speed and load](docs/figures/reference_shot.png)
-
-## Ball transfers
-
-The coils push the craft. The balls only keep the sleeve off the wall.
-
-Put the balls in the tube, pointing inward, as ball transfers. A spring plunger with a fixed ball tip would skid. The ball has to be free to spin. Use silicon nitride. A steel ball in the coil bore becomes part of the magnet.
-
-The reference liner is rings of 8 balls on a 120 mm pitch. The sleeve is 300 mm long, so nine balls on the outer wall share the turn load. Peak load is 17 N per ball. The spring rate that reaches that load at 0.8 mm of travel is 21 kN/m. Preload is 6 N.
-
-The craft carries short rub pads, 25 mm long. A straight 300 mm sleeve in a 1.5 m radius bore would rise 7.5 mm off the wall at mid-span and jam. A 25 mm pad rises 0.05 mm, inside the spring travel.
-
-Hertz pressure at 17 N on an 8 mm ball:
-
-| Rub surface | Peak pressure |
+| Added speed | Propellant not loaded |
 | --- | ---: |
-| Hard nonmagnetic race | 1.53 GPa |
-| Aluminum | 0.93 GPa |
-| PEEK | 0.15 GPa |
+| 10 m/s | 17 t |
+| 15 m/s | 25 t |
+| 20 m/s | 33 t |
+| 50 m/s | 82 t |
+| 100 m/s | 163 t |
 
-Aluminum is at the edge of brinelling, so the pressure case should not be the running surface. PEEK is soft enough to live, and it will wear. A hard nonmagnetic strip is the reusable answer. The straight barrel is the easy part for the balls: at 65° the wall only holds a component of the weight, about 6 N total, while the coils take the 220 N axial load.
+About 78 percent of that is oxygen and 22 percent is methane. A retrofit cannot honestly buy the 50 and 100 m/s rows. The stroke on this pad is tens of meters, and the skirt cannot take a local load comparable to the whole engine bay. Those rows are the reason a new track would be a new launch structure.
 
-## When the motor lights
+## Three retrofits
 
-The abort happens at the breech, before the barrel coils are released. The craft is clamped. Valves open into a flame bucket behind the nozzle, and the motor burns for 0.4 s. Chamber pressure and the clamp load are the go/no-go. If they are not in family by 0.5 s, the valves close and the coils stay off. The vehicle has not moved. That is the least-damage abort.
+**Pusher ring.** A truss on the existing mount foundation, outside the engine bells. Linear motors push bolted shoes on the aft skirt for about 40 m, then the shoes run off. Engines are already at full thrust. The flame stays on the steel plate. Five meganewtons, about 9 m/s, about 14 t of methalox, peak power about 43 MW for under a second.
 
-The bore crossing is cold. A jet in the coil section cooks the ball transfers and the windings. A timer set for a 50 ms nominal delay does not prevent that. On a million draws with a 15 ms scatter, 44% of those timers light while the nozzle is still inside the bore. The early tail lights about 2.5 m inside.
+![Aft-skirt pusher ring](docs/figures/pusher-ring.png)
 
-A position interlock fixes the early tail. The fire line goes live only when the nozzle is 0.25 m past the closed-bore mouth, out on the open rail. The delay clock starts there.
+**Hold-down stroke.** The clamps already carry the fueled stack. Give them a few meters of powered travel so release is a shove. Four to eight meters per second, under 15 t of propellant. The plume also spends less time on the deluge plate.
 
-| Igniter | Thrust starts | Chamber-pressure bit |
-| --- | ---: | ---: |
-| Fast, 20 ms | 2.5 m past the mouth | 6.9 m |
-| Nominal, 50 ms | 5.8 m | 10.2 m |
-| Slow, 100 ms | 11.3 m | 15.7 m |
+![Powered hold-down](docs/figures/hold-down.png)
 
-The open rail runs to 16.2 m so the slow igniter still reports pressure while the sleeve is captured. That bit chooses powered flight or the chute. It does not stop a craft that is already at 110 m/s. Stopping from 110 m/s at 15 g takes 41 m.
+**Tower-column rail.** A second pin set lower on the booster, in a rail lagged to the tower columns. The grid-fin pins are too high. Little tower remains above them. The column load is the same few-meganewton class as the ring. Use this only if the mount foundation cannot take the ring.
 
-The jet points back at the coil mouth. On a fast igniter the nozzle is 2.5 m out, and a 20° plume is about 0.9 m in radius by the time it reaches the mouth. The mouth gets a replaceable deflector. The guide rails sit beside the sleeve, ahead of the nozzle, outside that aft jet.
+![Second pin set](docs/figures/tower-rails.png)
 
-Lighting at 5.8 m instead of 0.5 m changes the reference apogee by about 9 m.
+Electricity is a capacitor yard beside the pad. Starbase already runs an air separation plant. The structure is the constraint, not the energy.
 
-## If there is no motor
+## Out of scope
 
-A fully magnetic flight uses the same breech gate, with bank voltage and the position encoders instead of chamber pressure. This 14 g tube at 110 m/s reaches a ballistic apogee of about 400 m. A straight 65° bore at 14 g needs 215 m/s at the muzzle to ballistic-coast to 1 km. That bore is 169 m long and the muzzle is 153 m up. The craft still arrives near 100 m/s if nothing slows it.
+A ground track to hundreds of meters per second. The fuel save is real there, and the stroke at a force this vehicle can take is a new facility.
 
-Engine-out from the reference muzzle, one million samples on the V100, wind 2 m/s:
-
-| Recovery | Impact speed | Downrange | Crossrange, 95% |
-| --- | ---: | ---: | ---: |
-| None | 79 m/s | 549 to 617 m | 47 m |
-| 0.9 m chute, opened at apogee | 5.1 m/s | 308 to 346 m | 26 m |
-
-The chute impact is about 19 J. The bare impact is about 4.6 kJ. A magnetic catch of the 79 m/s impact, at 15 g, is still a 21 m brake that has to be placed in that ellipse. The chute is the small-craft way to land with little damage. A magnetic brake is the tool for an abort that is still on a rail, not for a craft falling from 400 m.
-
-## What the motor still has to do
-
-Same craft. Isp 205 s. Cd 0.50. The gentle motor is T/W 3.5 at ignition, 51 N. The pad cases ride a 2 m rail at 65° so a slow gravity turn does not immediately bend them into the ground. The tube craft lights on the open rail, 5.8 m past the closed bore, which is the nominal delay after the position interlock.
-
-| Mission | Thrust | Peak motor load | Apogee on 0.40 kg | Propellant for a 1 km apogee | Peak dynamic pressure |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Tube, then the gentle motor | 51 N | 4.8 g | 2380 m | 0.093 kg | 22 kPa |
-| Pad rail, same gentle motor | 51 N | 4.7 g | 584 m | 3.13 kg | 25 kPa |
-| Pad rail, high-thrust motor | 206 N | 19 g | 1826 m | 0.18 kg | 79 kPa |
-
-The tube motor sees about 5 g. The high-thrust pad motor sees 19 g, four times the thrust, and a harsher max-q. The gentle motor on a pad can climb, and it needs about 3.1 kg of propellant to reach the same 1 km the tube reaches with 0.09 kg.
-
-![Ascent comparison](docs/figures/ascent.png)
-
-## What is modeled
-
-The tube integration commands the craft acceleration and solves the axial force the coils have to supply, including gravity, rolling friction, and a 5% residual radial coil load. Work along the bore matches kinetic energy, potential energy, and friction work. That check is in `tests/test_tube.py`.
-
-Coil shape, current, timing, and suck-back are not modeled. `data/reference_tube_profile.csv` is the force the coils have to produce. Capacitor mass is not in the craft mass. The motor is a point mass with constant thrust along the velocity vector after the rail or the muzzle.
-
-The geometry map is 11,200 independent shots. On this machine that ran in 5.0 s on 86 processes. The engine-out cloud, one million samples, ran on the V100 in the cu124 PyTorch build because CuPy's CUDA 13 JIT does not build reductions for that GPU.
-
-## Run
-
-```bash
-PYTHONPATH=src python -m pytest
-PYTHONPATH=src python -m em_ascent.sweep
-PYTHONPATH=src python -m em_ascent.report
-PYTHONPATH=src python -m em_ascent.present
-```
-
-`sweep` rewrites `data/geometry_map.csv` and `data/reference_choice.json`. `report` rewrites the profile, the flight table, and the performance plots. `present` rewrites the depot, sequence, comparison, path, and recovery figures.
+Redraw the figures with `python src/figures.py`.
 
 ## License
 
